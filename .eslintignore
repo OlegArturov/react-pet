@@ -1,0 +1,15 @@
+# Configuration files
+webpack/
+*.config.js
+prettier.config.js
+eslint.config.js
+
+# Build outputs
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Other
+*.min.js 

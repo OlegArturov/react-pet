@@ -1,0 +1,52 @@
+{
+  "name": "reactdrupalintegration",
+  "version": "1.0.0",
+  "description": "pet project for testing integration of react components and modules into drupal",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently -k -n WEBPACK,LINT \"webpack serve --config webpack/webpack.config.js --mode development\" \"chokidar 'src/**/*.{js,jsx}' -c 'eslint src --ext .js,.jsx'\"",
+    "build": "webpack --config webpack/webpack.config.js --mode production",
+    "build:dashboard": "webpack --config webpack/drupal-dashboard.config.js --mode production",
+    "lint": "eslint src --ext .js,.jsx",
+    "lint:fix": "eslint src --ext .js,.jsx --fix",
+    "lint:watch": "eslint src --ext .js,.jsx --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dashboard-update": "npm install drupal-dashboard@latest",
+    "update-custom-libs": "npm run dashboard-update"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.2.0",
+    "@mui/material": "^7.2.0",
+    "drupal-dashboard": "^1.0.10",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.7.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
+    "babel-loader": "^10.0.0",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.2.0",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-webpack-plugin": "^5.0.2",
+    "html-webpack-plugin": "^5.6.3",
+    "prettier": "^3.6.2",
+    "react-dev-overlay": "^0.0.0",
+    "react-refresh": "^0.17.0",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.100.2",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}

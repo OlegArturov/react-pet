@@ -1,0 +1,30 @@
+{
+  "name": "drupal-dashboard",
+  "version": "1.0.10",
+  "description": "Reusable React Dashboard widget for Drupal or other CMS integration",
+  "main": "drupal-dashboard.js",
+  "module": "drupal-dashboard.js",
+  "files": [
+    "drupal-dashboard.js"
+  ],
+  "author": "Oleg Arturov",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "dashboard",
+    "drupal",
+    "widget",
+    "mui"
+  ],
+  "peerDependencies": {
+    "react": ">=19.1.0",
+    "react-dom": ">=19.1.0"
+  },
+  "dependencies": {},
+  "exports": {
+    ".": {
+      "import": "./drupal-dashboard.js",
+      "require": "./drupal-dashboard.js"
+    }
+  }
+}
