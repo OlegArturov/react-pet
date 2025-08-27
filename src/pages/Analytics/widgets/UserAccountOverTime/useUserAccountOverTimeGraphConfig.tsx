@@ -42,7 +42,7 @@ const useUserAccountOverTimeGraphConfig = ({
         );
         return {
           name: translations.widgetComponents.userAccountOverTime.roles[d.role],
-          data: categories.map((date) => valueByDate.get(date) ?? null),
+          data: categories.map((date) => valueByDate.get(date) ?? 0),
           color: colorsMap[d.role],
         };
       }),
@@ -96,11 +96,24 @@ const useUserAccountOverTimeGraphConfig = ({
         axisTicks: { show: false },
         axisBorder: { show: false },
         labels: {
+          // formatter: (v: string) => {
+          //   if (!v) return '';
+          //   if (categories.length > 10) {
+          //     const d = new Date(v);
+          //     if (!Number.isNaN(d.getTime())) {
+          //       const mm = String(d.getMonth() + 1).padStart(2, '0');
+          //       const dd = String(d.getDate()).padStart(2, '0');
+          //       const yyyy = d.getFullYear();
+          //       return `${mm}/${dd}/${yyyy}`;
+          //     }
+          //   }
+          //   return v;
+          // },
           formatter: (v: string) => v || '',
           rotate: -30,
           style: {
             colors: colors.mainText,
-            fontSize: '12px',
+            fontSize: categories.length > 10 ? '10px' : '12px',
             fontWeight: 400,
             fontFamily: "'Noto Sans', sans-serif",
           },

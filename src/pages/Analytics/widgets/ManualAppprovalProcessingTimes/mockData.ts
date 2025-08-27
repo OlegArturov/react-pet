@@ -4,11 +4,6 @@ export interface ManualApprovalProcessingTimesDataItem {
   totalNumberRequest: number;
 }
 
-export interface ManualApprovalProcessingTimesData {
-  average: ManualApprovalProcessingTimesDataItem[];
-  median: ManualApprovalProcessingTimesDataItem[];
-}
-
 export interface ManualApprovalProcessingTimesDataResponse {
   status: string;
   message: string;

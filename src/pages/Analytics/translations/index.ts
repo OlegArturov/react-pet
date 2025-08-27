@@ -17,7 +17,7 @@ export const translations = {
     TOP_FIVE_MOST_POPULAR_APIS: 'Top 5 Most Popular APIs',
     TRANSLATION_STATUS_BY_LANGUAGE: 'Translation Status by Language',
     manual_approval_requests: 'Manual Approval Requests',
-    manual_approval_processing_times: 'Manual Approval Processing Times',
+    manual_approval_processing_time: 'Manual Approval Processing Time',
     no_widgets_title: 'No widgets selected',
     no_widgets_description:
       'You have hidden all widgets. Use the Select Widgets menu to choose which ones to show.',

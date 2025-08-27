@@ -6,6 +6,7 @@ import translations from '../../translations';
 import { colors } from '../../theme/variables';
 import { ApexOptions } from 'apexcharts';
 import { ManualApprovalProcessingTimesDataResponse } from './mockData';
+import { getCustomMarkerHtml } from '../../components/CustomMarkerHtml';
 
 interface ManualApprovalProcessingTimesGraphConfigProps {
   data: ManualApprovalProcessingTimesDataResponse | null;
@@ -45,9 +46,11 @@ const useManualApprovalProcessingTimesGraphConfig = ({
   }, [data]);
 
   const yTickAmount = useMemo(() => {
-    const ticks = yMax <= 10 ? Math.max(2, yMax) : 5;
+    const ticks = yMax === 1 ? 2 : yMax <= 10 ? Math.max(2, yMax) : 5;
     return ticks;
   }, [yMax]);
+
+  const hasSinglePoint = useMemo(() => (data?.data?.length ?? 0) === 1, [data]);
 
   const options: ApexOptions = useMemo(
     () => ({
@@ -55,17 +58,17 @@ const useManualApprovalProcessingTimesGraphConfig = ({
         type: 'area',
         toolbar: { show: false },
       },
-      stroke: { curve: 'straight', width: 1 },
+      stroke: { curve: 'straight', width: hasSinglePoint ? 0 : 1 },
       fill: {
         type: 'gradient',
         gradient: {
           shadeIntensity: 0,
-          opacityFrom: 0.4,
-          opacityTo: 0.1,
+          opacityFrom: hasSinglePoint ? 0 : 0.4,
+          opacityTo: hasSinglePoint ? 0 : 0.1,
           stops: [0, 90, 100],
         },
       },
-      markers: { size: 3.5 },
+      markers: { size: hasSinglePoint ? 5 : 3.5 },
       dataLabels: { enabled: false },
       grid: {
         strokeDashArray: 2,
@@ -98,7 +101,14 @@ const useManualApprovalProcessingTimesGraphConfig = ({
         max: yMax,
         tickAmount: yTickAmount,
         labels: {
-          formatter: (v: number) => `${Math.trunc(v)}h`,
+          formatter: (v: number) => {
+            if (yMax === 1) {
+              if (Math.abs(v - 0.5) < 1e-6) return '30m';
+              if (Math.abs(v - 1) < 1e-6) return '1h';
+              return '0h';
+            }
+            return `${Math.trunc(v)}h`;
+          },
           style: {
             colors: colors.mainText,
             fontSize: '12px',
@@ -117,6 +127,11 @@ const useManualApprovalProcessingTimesGraphConfig = ({
         labels: {
           colors: colors.mainText,
         },
+        markers: {
+          customHTML: () => getCustomMarkerHtml(colors.blueMain) as any,
+          offsetX: -2,
+          offsetY: 0,
+        },
       },
       colors: ['#0062AC', '#3CB371'],
       tooltip: {
@@ -132,15 +147,14 @@ const useManualApprovalProcessingTimesGraphConfig = ({
               <div
                 style={{
                   display: 'flex',
-                  backgroundColor: colors.grayLightest,
                   fontSize: '12px',
-                  fontWeight: 400,
+                  fontWeight: 600,
                   fontFamily: "'Noto Sans', sans-serif",
-                  padding: '8px 10px',
-                  borderBottom: `1px solid ${colors.grayLight}`,
+                  padding: '8px 10px 0',
+                  color: colors.mainText,
                 }}
               >
-                <Typography>{date}</Typography>
+                {date}
               </div>
               <div
                 style={{
@@ -150,14 +164,43 @@ const useManualApprovalProcessingTimesGraphConfig = ({
                   fontFamily: "'Noto Sans', sans-serif",
                 }}
               >
-                <Typography variant="body2" style={{ marginBottom: '10px' }}>
-                  {translations.widgetComponents.manualApprovalProcessingTimes.averageApprovalTime}:{' '}
-                  <b>{point.averageApprovalTime}</b>
-                </Typography>
-                <Typography variant="body2">
-                  {translations.widgetComponents.manualApprovalProcessingTimes.totalNumberRequest}:{' '}
-                  <b>{point.totalNumberRequest}</b>
-                </Typography>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    margin: '2px 0',
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{ color: colors.mainText, fontSize: '12px', fontWeight: 400 }}
+                    style={{ marginBottom: '0 !important' }}
+                  >
+                    {
+                      translations.widgetComponents.manualApprovalProcessingTimes
+                        .averageApprovalTime
+                    }
+                    : {point.averageApprovalTime}
+                  </Typography>
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    margin: '2px 0',
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{ color: colors.mainText, fontSize: '12px', fontWeight: 400 }}
+                    style={{ marginBottom: '0 !important' }}
+                  >
+                    {translations.widgetComponents.manualApprovalProcessingTimes.totalNumberRequest}
+                    : {point.totalNumberRequest}
+                  </Typography>
+                </div>
               </div>
             </div>
           );
@@ -165,7 +208,7 @@ const useManualApprovalProcessingTimesGraphConfig = ({
         },
       },
     }),
-    [categories, yMax, yTickAmount, data],
+    [categories, yMax, yTickAmount, data, hasSinglePoint],
   );
   return {
     series,

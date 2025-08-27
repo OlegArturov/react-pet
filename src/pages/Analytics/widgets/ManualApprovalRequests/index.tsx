@@ -80,7 +80,7 @@ const ManualApprovalRequests = ({
       ) : (
         options &&
         series &&
-        widgetDataResponse?.data?.length && (
+        (widgetDataResponse?.data?.length ?? 0) > 0 && (
           <Chart options={options} series={series} type="bar" height={350} />
         )
       )}

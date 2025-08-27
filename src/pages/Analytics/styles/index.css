@@ -79,7 +79,8 @@
   pointer-events: none;
 }
 
-#user-account-over-time-chart .apexcharts-legend-marker {
+#user-account-over-time-chart .apexcharts-legend-marker,
+#manual-approval-processing-times-chart .apexcharts-legend-marker {
   background-color: transparent !important;
 
   width: 36px !important;

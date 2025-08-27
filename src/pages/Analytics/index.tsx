@@ -35,7 +35,7 @@ export enum AnalyticWidgetType {
   // TOP_FIVE_MOST_POPULAR_APIS = 'TOP_FIVE_MOST_POPULAR_APIS',
   // TRANSLATION_STATUS_BY_LANGUAGE = 'TRANSLATION_STATUS_BY_LANGUAGE',
   MANUAL_APPROVAL_REQUESTS = 'manual_approval_requests',
-  MANUAL_APPROVAL_PROCESSING_TIMES = 'manual_approval_processing_times',
+  MANUAL_APPROVAL_PROCESSING_TIME = 'manual_approval_processing_time',
 }
 
 const VISIBILITY_STORAGE_KEY = 'analytics_widgets_visibility_v1';
@@ -158,11 +158,11 @@ const Analytics = () => {
             dragHandleRef={handleRef}
           />
         );
-      case AnalyticWidgetType.MANUAL_APPROVAL_PROCESSING_TIMES:
+      case AnalyticWidgetType.MANUAL_APPROVAL_PROCESSING_TIME:
         return (
           <ManualApprovalProcessingTimes
             globalSelectedPeriod={selectedPeriod}
-            hideWidget={() => hideWidget(AnalyticWidgetType.MANUAL_APPROVAL_PROCESSING_TIMES)}
+            hideWidget={() => hideWidget(AnalyticWidgetType.MANUAL_APPROVAL_PROCESSING_TIME)}
             dragHandleRef={handleRef}
           />
         );
@@ -185,7 +185,7 @@ const Analytics = () => {
     // ].filter((t) => flatSelectedWidgets.includes(t)) as AnalyticWidgetType[],
     [
       AnalyticWidgetType.MANUAL_APPROVAL_REQUESTS,
-      AnalyticWidgetType.MANUAL_APPROVAL_PROCESSING_TIMES,
+      AnalyticWidgetType.MANUAL_APPROVAL_PROCESSING_TIME,
     ].filter((t) => flatSelectedWidgets.includes(t)) as AnalyticWidgetType[],
   ].filter((row) => row.length > 0);
 

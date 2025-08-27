@@ -82,7 +82,7 @@ const UserAccountOverTime = ({
       ) : (
         options &&
         series &&
-        widgetDataResponse?.data?.length && (
+        (widgetDataResponse?.data?.length ?? 0) > 0 && (
           <Chart
             options={options}
             series={series}
