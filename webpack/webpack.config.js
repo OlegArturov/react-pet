@@ -2,9 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -13,7 +14,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: { loader: 'babel-loader' },
       },
@@ -21,10 +22,17 @@ module.exports = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name][ext]',
+        },
+      },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -36,6 +44,12 @@ module.exports = {
       emitWarning: true,
       emitError: true,
       failOnError: false,
+    }),
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_API_BASE': JSON.stringify(process.env.REACT_APP_API_BASE),
+      'process.env.REACT_APP_AUTH_TOKEN': JSON.stringify(process.env.REACT_APP_AUTH_TOKEN),
+      'process.env.API_ROOT_URL': JSON.stringify(process.env.API_ROOT_URL),
+      'process.env.API_TOKEN': JSON.stringify(process.env.API_TOKEN),
     }),
   ],
   devServer: {

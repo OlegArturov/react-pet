@@ -44,7 +44,7 @@ export default function Dashboard() {
   return (
     <Box sx={{ maxWidth: 500, margin: '40px auto', p: 4, boxShadow: 3, borderRadius: 3 }}>
       <Typography variant="h5" gutterBottom>
-        Posts of users (JSONPlaceholder API (v1.0.10))
+        Posts of users (updated) (JSONPlaceholder API (v1.0.13))
       </Typography>
 
       <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>

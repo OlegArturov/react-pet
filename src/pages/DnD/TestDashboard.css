@@ -1,0 +1,44 @@
+.dashboard-wrapper {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+.drop-zone {
+  min-height: 100px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+  transition: background 0.2s ease;
+}
+
+.drop-zone.hover {
+  background-color: #e7edf9;
+  border-color: #10326e;
+}
+
+.two-column {
+  display: flex;
+  gap: 20px;
+}
+
+.two-column .drop-zone {
+  flex: 1;
+}
+
+.widget {
+  background-color: #10326e;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  cursor: grab;
+  transition: transform 0.2s ease;
+}
+
+.widget:active {
+  cursor: grabbing;
+  transform: scale(1.02);
+}

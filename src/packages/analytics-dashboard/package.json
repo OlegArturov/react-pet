@@ -1,0 +1,37 @@
+{
+  "name": "analytics-dashboard-test-widget",
+  "version": "1.0.4",
+  "description": "Reusable React Analytics Dashboard widget for Drupal or other CMS integration",
+  "main": "analytics-dashboard.js",
+  "module": "analytics-dashboard.js",
+  "files": [
+    "analytics-dashboard.js"
+  ],
+  "author": "Oleg Arturov",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "analytics",
+    "dashboard",
+    "widget",
+    "mui",
+    "apexcharts"
+  ],
+  "peerDependencies": {
+    "@emotion/react": ">=11.0.0",
+    "@emotion/styled": ">=11.0.0",
+    "@mui/icons-material": ">=7.0.0",
+    "@mui/material": ">=7.0.0",
+    "apexcharts": ">=3.49.0",
+    "react": ">=19.1.0",
+    "react-apexcharts": ">=1.4.1",
+    "react-dom": ">=19.1.0"
+  },
+  "dependencies": {},
+  "exports": {
+    ".": {
+      "import": "./analytics-dashboard.js",
+      "require": "./analytics-dashboard.js"
+    }
+  }
+}

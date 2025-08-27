@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+/* DnD indicators */
+.analytics-drop-between {
+  height: 36px;
+  padding: 8px 0 20px;
+  position: relative;
+  z-index: 1;
+}
+.analytics-drop-between.hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 3px solid #01659d;
+}
+
+.analytics-row {
+  position: relative;
+}
+.analytics-drop-side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+}
+.analytics-drop-side.left {
+  left: -8px;
+}
+.analytics-drop-side.right {
+  right: -8px;
+}
+.analytics-drop-side.hover::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  background: #01659d;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.analytics-widget-drop-target {
+  position: relative;
+}
+.analytics-widget-drop-target.hover::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 2px dashed #01659d;
+  border-radius: 8px;
+  background: rgba(1, 101, 157, 0.08);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.analytics-swap-center {
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  top: 0;
+  bottom: 0;
+}
+.analytics-swap-center.hover::after {
+  content: '';
+  position: absolute;
+  inset: 8px 0;
+  border: 2px dashed #01659d;
+  border-radius: 8px;
+  background: rgba(1, 101, 157, 0.08);
+  pointer-events: none;
+}
+
+#user-account-over-time-chart .apexcharts-legend-marker {
+  background-color: transparent !important;
+
+  width: 36px !important;
+  height: 12px !important;
+}

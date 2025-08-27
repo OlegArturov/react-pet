@@ -2,35 +2,51 @@
   "name": "reactdrupalintegration",
   "version": "1.0.0",
   "description": "pet project for testing integration of react components and modules into drupal",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
     "start": "concurrently -k -n WEBPACK,LINT \"webpack serve --config webpack/webpack.config.js --mode development\" \"chokidar 'src/**/*.{js,jsx}' -c 'eslint src --ext .js,.jsx'\"",
     "build": "webpack --config webpack/webpack.config.js --mode production",
     "build:dashboard": "webpack --config webpack/drupal-dashboard.config.js --mode production",
+    "build:analytics": "webpack --config webpack/analytics-dashboard.config.js --mode production",
+    "build:all-cp": "webpack --config webpack/drupal-dashboard.config.js --mode production && webpack --config webpack/analytics-dashboard.config.js --mode production",
     "lint": "eslint src --ext .js,.jsx",
     "lint:fix": "eslint src --ext .js,.jsx --fix",
     "lint:watch": "eslint src --ext .js,.jsx --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dashboard-update": "npm install drupal-dashboard@latest",
+    "analytics-dashboard-update": "npm install analytics-dashboard-test-widget@latest",
     "update-custom-libs": "npm run dashboard-update"
   },
-  "author": "",
+  "author": "OlegArturov <oleg.arturov.work@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@apiboost/analytics": "0.0.3",
+    "@atlaskit/pragmatic-drag-and-drop": "^1.7.4",
+    "@atlaskit/pragmatic-drag-and-drop-auto-scroll": "^2.1.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.2.0",
+    "@mui/lab": "^7.0.0-beta.16",
     "@mui/material": "^7.2.0",
-    "drupal-dashboard": "^1.0.10",
+    "analytics-dashboard-test-widget": "^1.0.4",
+    "apexcharts": "3.49.0",
+    "drupal-dashboard": "^1.0.13",
+    "mui-nested-menu": "^4.0.1",
     "react": "^19.1.0",
+    "react-apexcharts": "1.4.1",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.7.1"
+    "react-router-dom": "^7.7.1",
+    "typescript": "5.7.2"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
     "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.26.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
+    "@types/node": "^24.2.1",
+    "@types/react": "19",
+    "@types/react-dom": "19",
     "babel-loader": "^10.0.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.2.0",
@@ -48,5 +64,6 @@
     "webpack": "^5.100.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
-  }
+  },
+  "repository": "https://github.com/OlegArturov/react-pet.git"
 }

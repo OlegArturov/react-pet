@@ -1,6 +1,6 @@
 {
   "name": "drupal-dashboard",
-  "version": "1.0.10",
+  "version": "1.0.13",
   "description": "Reusable React Dashboard widget for Drupal or other CMS integration",
   "main": "drupal-dashboard.js",
   "module": "drupal-dashboard.js",
@@ -18,7 +18,10 @@
   ],
   "peerDependencies": {
     "react": ">=19.1.0",
-    "react-dom": ">=19.1.0"
+    "react-dom": ">=19.1.0",
+    "@mui/material": ">=7.0.0",
+    "@emotion/react": ">=11.0.0",
+    "@emotion/styled": ">=11.0.0"
   },
   "dependencies": {},
   "exports": {
